@@ -86,6 +86,13 @@ html {
         transform: scale(1.05);
     }
 
+   .progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #d90404);
+    border-radius: 10px;
+    transition: width 0.2s ease, background 0.3s ease;
+
     /* Pesan Status */
     #msgs {
         font-size: 22px;
