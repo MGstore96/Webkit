@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slopkit Webkit by MGstore</title>
+<title>7.00 - 13.52 Webkit by MGstore</title>
 <link rel="stylesheet" href="modifikasi.css">
 </head>
 <body>
 
 <div class="container">
     <hr style="width: 100%;">
-    <h2>Slopkit Webkit by MGstore</h2>
+    <h2>7.00 - 13.52 Webkit by MGstore</h2>
     
     <!-- Status Indikator Firmware -->
     <div class="fw-status-card">
@@ -39,8 +39,9 @@
     <div class="credits">
         <strong>Special Thanks to:</strong><br>
         <a href="#">GamerHack93</a> <a href="#">sleirsgoevy</a> <a href="#">TheFlow</a> <a href="#">Flatz</a> 
-        <a href="#">Egycnq</a> <a href="#">Jordy</a> <a href="#">Sonic-Iso</a> <a href="#">Feyzee61</a> 
-        <a href="#">AlAzif</a> <a href="#">ChendoChap</a> <a href="#">Kameleonre_</a> <a href="#">SiSTR0</a>
+        <a href="#">Egycnq</a> <a href="#">Jordy</a> <a href="#">Sonic-Iso</a> <a href="#">Abc</a> 
+        <a href="#">Prb29327239</a> <a href="#">Feyzee61</a> <a href="#">AlAzif</a> <a href="#">ChendoChap</a> 
+        <a href="#">Kameleonre_</a> <a href="#">SiSTR0</a>
     </div>
     <hr style="width: 100%;">
 </div>
@@ -94,7 +95,12 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (isPS4) {
         fwText.innerHTML = fwVersion;
-        if (fwNum >= 11.50 && fwNum <= 13.52) {
+        var isSupported = (fwNum == 5.05 || fwNum == 5.07 || 
+                           (fwNum >= 7.00 && fwNum <= 8.52) || 
+                           (fwNum >= 9.00 && fwNum <= 9.60) || 
+                           (fwNum >= 10.00 && fwNum <= 11.02) || 
+                           (fwNum >= 11.50 && fwNum <= 13.52));
+        if (isSupported) {
             statusDot.className = "status-dot status-online";
             fwBadge.style.backgroundColor = "#10e610";
             fwBadge.innerText = "SUPPORTED";
