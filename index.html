@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slopkit Webkit by MGstore</title>
+<title>7.00 - 13.52 Webkit by MGstore</title>
 <link rel="stylesheet" href="modifikasi.css">
 </head>
 <body>
 
 <div class="container">
     <hr style="width: 100%;">
-    <h2>Slopkit Webkit by MGstore</h2>
+    <h2>7.00 - 13.52 Webkit by MGstore</h2>
     
     <!-- Status Indikator Firmware -->
     <div class="fw-status-card">
@@ -42,8 +42,9 @@
     <div class="credits">
         <strong>Special Thanks to:</strong><br>
         <a href="#">GamerHack93</a> <a href="#">sleirsgoevy</a> <a href="#">TheFlow</a> <a href="#">Flatz</a> 
-        <a href="#">Egycnq</a> <a href="#">Jordy</a> <a href="#">Sonic-Iso</a> <a href="#">Feyzee61</a> 
-        <a href="#">AlAzif</a> <a href="#">ChendoChap</a> <a href="#">Kameleonre_</a> <a href="#">SiSTR0</a>
+        <a href="#">Egycnq</a> <a href="#">Jordy</a> <a href="#">Sonic-Iso</a> <a href="#">Abc</a> 
+        <a href="#">Prb29327239</a> <a href="#">Feyzee61</a> <a href="#">AlAzif</a> <a href="#">ChendoChap</a> 
+        <a href="#">Kameleonre_</a> <a href="#">SiSTR0</a>
     </div>
     <hr style="width: 100%;">
 </div>
@@ -60,38 +61,92 @@ function onScriptError() {
     document.getElementById("msgs").innerHTML = "Konten Tidak Ditemukan! - Hapus Data Browser dan Muat Ulang Cache ...";
 }
 
-// Fungsi Eksekusi Payload
+function setMsg(htmlContent) {
+    var msgsElem = document.getElementById("msgs");
+    if (msgsElem) {
+        msgsElem.innerHTML = htmlContent;
+    }
+}
+
+// Fungsi Eksekusi Payload berdasarkan Firmware
 function loadExploit() {
-    var msgs = document.getElementById("msgs");
-    
-    // Pemilihan Firmware Exploit (11.50 - 13.52)
-    if (fwNum >= 11.50 && fwNum <= 12.00) {
-        msgs.innerHTML = "Menjalankan Exploit...";
+    setMsg("Menjalankan Exploit... Mohon Tunggu");
+
+    // Penanganan Cache Browser
+    if (window.applicationCache && window.applicationCache.status == '0') {
+        if (fwNum == 5.05 || fwNum == 5.07) {
+            window.location.replace("cache505.html");
+            return;
+        } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+            window.location.replace("cache700.html");
+            return;
+        } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+            window.location.replace("cache900.html");
+            return;
+        } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+            window.location.replace("cachecss.html");
+            return;
+        } else if (fwNum >= 11.50 && fwNum <= 13.52) {
+            window.location.replace("cacheslopkit.html");
+            return;
+        } else {
+            setMsg('Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>');
+            return;
+        }
+    }
+
+    // Pemuatan Script Exploit
+    if (fwNum == 5.05 || fwNum == 5.07) {
+        var script = document.createElement('script');
+        script.src = "505/exploit.js";
+        script.onerror = onScriptError;
+        document.head.appendChild(script);
+    } else if (fwNum >= 7.00 && fwNum <= 8.52) {
+        var script = document.createElement('script');
+        script.type = 'module';
+        script.src = "700/alert.js";
+        script.onerror = onScriptError;
+        document.head.appendChild(script);
+    } else if (fwNum >= 9.00 && fwNum <= 9.60) {
+        var script = document.createElement('script');
+        script.type = 'module';
+        script.src = "900/alert.js";
+        script.onerror = onScriptError;
+        document.head.appendChild(script);
+    } else if (fwNum >= 10.00 && fwNum <= 11.02) {
+        var script = document.createElement('script');
+        script.src = "css/main.js";
+        script.onerror = onScriptError;
+        script.onload = function () {
+            setTimeout(function () {
+                doJb();
+            }, 500);
+        };
+        document.head.appendChild(script);
+    } else if (fwNum >= 11.50 && fwNum <= 12.02) {
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "chain_lapse.js";
         script.onerror = onScriptError;
         document.head.appendChild(script);
     } else if (fwNum >= 12.50 && fwNum <= 13.00) {
-        msgs.innerHTML = "Menjalankan Exploit Poops...";
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "chain_poops.js";
         script.onerror = onScriptError;
         document.head.appendChild(script);
     } else if (fwNum >= 13.02 && fwNum <= 13.52) {
-        msgs.innerHTML = "Menjalankan Exploit Relapse...";
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "jb.js?v=19";
         script.onerror = onScriptError;
         document.head.appendChild(script);
     } else {
-        msgs.innerHTML = 'Firmware tidak didukung untuk exploit otomatis: <span style="color: red;">' + fwVersion + '</span>';
+        setMsg('Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>');
     }
 }
 
-// Penghentian Timer Hitung Mundur
+// Penghentian Timer Auto Jailbreak
 function clearAutoTimer() {
     if (autoTimer !== null) {
         clearInterval(autoTimer);
@@ -99,7 +154,7 @@ function clearAutoTimer() {
     }
 }
 
-// Handler Klik Manual (Tombol GoldHEN)
+// Klik Manual Tombol GoldHEN
 function startManualExploit() {
     clearAutoTimer();
     loadExploit();
@@ -114,24 +169,21 @@ function toggleAutoJB() {
         startAutoCountdown();
     } else {
         clearAutoTimer();
-        document.getElementById("msgs").innerHTML = "Auto Jailbreak Dibatalkan. Klik <b>GoldHEN</b> untuk memulai.";
+        setMsg("Auto Jailbreak Dibatalkan. Klik <b>GoldHEN</b> untuk memulai.");
     }
 }
 
-// Fungsi Hitung Mundur Auto Jailbreak
+// Hitung Mundur Auto Jailbreak
 function startAutoCountdown() {
     clearAutoTimer();
     
-    var msgs = document.getElementById("msgs");
     var timeLeft = 5;
-    
-    // Tampilkan pesan awal detik ke-5 secara langsung
-    msgs.innerHTML = "Auto Jailbreak dalam <b>" + timeLeft + "</b> detik...";
+    setMsg("Auto Jailbreak dalam <b>" + timeLeft + "</b> detik...");
     
     autoTimer = setInterval(function() {
         timeLeft--;
         if (timeLeft > 0) {
-            msgs.innerHTML = "Auto Jailbreak dalam <b>" + timeLeft + "</b> detik...";
+            setMsg("Auto Jailbreak dalam <b>" + timeLeft + "</b> detik...");
         } else {
             clearAutoTimer();
             loadExploit();
@@ -139,7 +191,7 @@ function startAutoCountdown() {
     }, 1000);
 }
 
-// Inisialisasi Indikator Firmware
+// Indikator Firmware
 function updateFWStatus() {
     var fwText = document.getElementById("fwText");
     var statusDot = document.getElementById("statusDot");
@@ -147,7 +199,12 @@ function updateFWStatus() {
 
     if (isPS4) {
         fwText.innerHTML = fwVersion;
-        if (fwNum >= 11.50 && fwNum <= 13.52) {
+        var isSupported = (fwNum == 5.05 || fwNum == 5.07 || 
+                           (fwNum >= 7.00 && fwNum <= 8.52) || 
+                           (fwNum >= 9.00 && fwNum <= 9.60) || 
+                           (fwNum >= 10.00 && fwNum <= 11.02) || 
+                           (fwNum >= 11.50 && fwNum <= 13.52));
+        if (isSupported) {
             statusDot.className = "status-dot status-online";
             fwBadge.style.backgroundColor = "#10e610";
             fwBadge.innerText = "SUPPORTED";
@@ -166,38 +223,24 @@ function updateFWStatus() {
     }
 }
 
-// Inisialisasi Utama Saat Halaman Dimuat
+// Inisialisasi Saat Dimuat
 document.addEventListener("DOMContentLoaded", function() {
-    var msgs = document.getElementById("msgs");
     var autoJBCheckbox = document.getElementById("autoJB");
 
     updateFWStatus();
 
-    // Cek Perangkat PS4
     if (!isPS4) {
-        msgs.innerHTML = "Hanya Untuk PS4 Slopkit";
+        setMsg("Hanya Untuk PS4 Firmware 7.00 sampai 13.52");
         return;
     }
 
-    // Penanganan Cache Browser
-    if (window.applicationCache && window.applicationCache.status == '0') {
-        if (fwNum >= 11.50 && fwNum <= 13.52) {
-            window.location.replace("cacheslopkit.html");
-            return;
-        } else {
-            msgs.innerHTML = 'Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>';
-            return;
-        }
-    }
-
-    // Load Preferensi Checkbox dari localStorage
     var savedAutoJB = localStorage.getItem("autoJailbreak");
     if (savedAutoJB === "true") {
         autoJBCheckbox.checked = true;
         startAutoCountdown();
     } else {
         autoJBCheckbox.checked = false;
-        msgs.innerHTML = "Silakan klik tombol <b>GoldHEN</b> untuk memulai.";
+        setMsg("Silakan klik tombol <b>GoldHEN</b> untuk memulai.");
     }
 });
 </script>
