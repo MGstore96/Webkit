@@ -77,12 +77,12 @@ function loadExploit() {
         script.onerror = onScriptError;
         document.head.appendChild(script);
    } else if (fwNum >= 13.02 && fwNum <= 13.52) {
-       msgs.innerHTML = "Menjalankan Exploit Relapse...";
-       var script = document.createElement('script');
-       script.type = 'module';
-       script.src = "jb.js?v=19";
-       script.onerror = onScriptError;
-       document.head.appendChild(script);
+    msgs.innerHTML = "Menjalankan Exploit Relapse...";
+    var script = document.createElement('script');
+    script.type = 'module';
+    script.src = "jb.js"; // Diubah dari "jb.js?v=19"
+    script.onerror = onScriptError;
+    document.head.appendChild(script);
       
     } else {
         msgs.innerHTML = 'Firmware tidak didukung untuk exploit otomatis: <span style="color: red;">' + fwVersion + '</span>';
@@ -145,7 +145,8 @@ function updateFWStatus() {
 
     if (isPS4) {
         fwText.innerHTML = fwVersion;
-        if (fwNum === 12.00 || (fwNum >= 11.00 && fwNum <= 13.52)){
+        // Rentang disesuaikan ke 11.50 - 13.52
+        if (fwNum >= 11.50 && fwNum <= 13.52){
             statusDot.className = "status-dot status-online";
             fwBadge.style.backgroundColor = "#10e610";
             fwBadge.innerText = "SUPPORTED";
@@ -171,15 +172,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateFWStatus();
 
-    // Cek Perangkat PS4
     if (!isPS4) {
         msgs.innerHTML = "Hanya Untuk PS4 Slopkit";
         return;
     }
 
-    // Penanganan Cache Browser
+    // Penanganan Cache Browser (Disesuaikan ke 11.50 - 13.52)
     if (window.applicationCache && window.applicationCache.status == '0') {
-        if (fwNum >= 11.00 && fwNum <= 13.52) {
+        if (fwNum >= 11.50 && fwNum <= 13.52) {
             window.location.replace("cacheslopkit.html");
             return;
         } else {
@@ -187,7 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
     }
-
+    
     // Load Preferensi Checkbox dari localStorage
     var savedAutoJB = localStorage.getItem("autoJailbreak");
     if (savedAutoJB === "true") {
