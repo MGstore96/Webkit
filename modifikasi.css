@@ -1,10 +1,9 @@
 html {
-    background-image: url('logo.png');
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-color: #3d3f4e;
+    background-color: #0f172a;
     color: white;
     text-align: center;
     height: 100%;
@@ -31,7 +30,7 @@ hr {
     border: 0;
     height: 1px;
     background: linear-gradient(to right, rgba(0,0,0,0), #00d2ff, rgba(0,0,0,0));
-    margin: 10px 0;
+    margin: 10px ;
     width: 100%;
 }
 
@@ -50,14 +49,14 @@ hr {
 
 .fw-status-card {
     background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(0, 210, 255, 0.3);
+    border: 2px solid rgb(7, 173, 188);
     border-radius: 12px;
     padding: 6px 16px;
     margin-top: 5px;
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    box-shadow: 0 0 10px rgba(0, 210, 255, 0.1);
+    box-shadow: 0 0 9px rgb(7, 173, 188);
 }
 
 .fw-badge {
@@ -102,9 +101,9 @@ hr {
 #msgs {
     font-size: 20px;
     margin: 10px 0;
-    color: #00d2ff;
+    color: #ff0019;
     min-height: 30px;
-    text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+    text-shadow: 0 0 10px rgb(26, 26, 26);
 }
 
 /* Tombol GoldHEN */
