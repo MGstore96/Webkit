@@ -114,6 +114,19 @@ hr {
     text-shadow: 0 0 10px rgb(26, 26, 26);
 }
 
+.msg-lapse {
+    color: hwb(67 6% 0%); /* Biru */
+}
+
+.msg-poops {
+    color: #08bc32; /* Kuning */
+}
+
+.msg-relapse {
+    color: #00d2ff; /* Hijau */
+}
+
+
 /* Tombol GoldHEN */
 .btn-goldhen {
     background: linear-gradient(135deg, #f39c12, #d35400);
