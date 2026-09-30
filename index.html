@@ -61,13 +61,6 @@ function onScriptError() {
     document.getElementById("msgs").innerHTML = "Konten Tidak Ditemukan! - Hapus Data Browser dan Muat Ulang Cache ...";
 }
 
-function setMsg(htmlContent) {
-    var msgsElem = document.getElementById("msgs");
-    if (msgsElem) {
-        msgsElem.innerHTML = htmlContent;
-    }
-}
-
 // Fungsi Eksekusi Payload berdasarkan Firmware
 function loadExploit() {
     setMsg("Menjalankan Exploit... Mohon Tunggu");
@@ -225,22 +218,36 @@ function updateFWStatus() {
 
 // Inisialisasi Saat Dimuat
 document.addEventListener("DOMContentLoaded", function() {
+    var msgs = document.getElementById("msgs");
     var autoJBCheckbox = document.getElementById("autoJB");
 
     updateFWStatus();
 
+    // Cek Perangkat PS4
     if (!isPS4) {
-        setMsg("Hanya Untuk PS4 Firmware 7.00 sampai 13.52");
+        msgs.innerHTML = "Hanya Untuk PS4 Slopkit";
         return;
     }
 
+    // Penanganan Cache Browser
+    if (window.applicationCache && window.applicationCache.status == '0') {
+        if (fwNum >= 11.50 && fwNum <= 13.52) {
+            window.location.replace("cacheslopkit.html");
+            return;
+        } else {
+            msgs.innerHTML = 'Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>';
+            return;
+        }
+    }
+
+    // Load Preferensi Checkbox dari localStorage
     var savedAutoJB = localStorage.getItem("autoJailbreak");
     if (savedAutoJB === "true") {
         autoJBCheckbox.checked = true;
         startAutoCountdown();
     } else {
         autoJBCheckbox.checked = false;
-        setMsg("Silakan klik tombol <b>GoldHEN</b> untuk memulai.");
+        msgs.innerHTML = "Silakan klik tombol <b>GoldHEN</b> untuk memulai.";
     }
 });
 </script>
