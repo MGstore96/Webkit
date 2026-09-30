@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html manifest="slopkit.manifest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slopkit Webkit by MGstore</title>
+<link rel="stylesheet" href="modifikasi.css">
+</head>
+<body>
+
+<div class="container">
+    <hr style="width: 100%;">
+    <h2>Slopkit Webkit by MGstore</h2>
+    
+    <!-- Status Indikator Firmware -->
+    <div class="fw-status-card">
+        <span class="status-dot" id="statusDot"></span>
+        <span>Firmware: <b id="fwText">Detecting...</b></span>
+        <span class="fw-badge" id="fwBadge">PS4</span>
+    </div>
+
+    <hr style="width: 100%;">
+
+    <!-- LOGO CUSTOM -->
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="custom-logo" id="mainLogo" onerror="this.style.display='none'">
+    </div>
+
+    <!-- Pesan Status & Output Instalasi Cache -->
+    <h2 id="msgs">Memulai Instalasi Cache...</h2>
+
+    <!-- UI Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-text" id="progressText">0%</div>
+    </div>
+
+    <!-- Credits -->
+    <div class="credits">
+        <strong>Special Thanks to:</strong><br>
+        <a href="#">GamerHack93</a> <a href="#">sleirsgoevy</a> <a href="#">TheFlow</a> <a href="#">Flatz</a> 
+        <a href="#">Egycnq</a> <a href="#">Jordy</a> <a href="#">Sonic-Iso</a> <a href="#">Feyzee61</a> 
+        <a href="#">AlAzif</a> <a href="#">ChendoChap</a> <a href="#">Kameleonre_</a> <a href="#">SiSTR0</a>
+    </div>
+    <hr style="width: 100%;">
+</div>
+
+<script>
+// Logic Asli Cache Handling
+history.replaceState(null, null, 'index.html');
+var histlength = history.length;
+history.go(-histlength);
+
+function DLProgress(e) {
+    var Percent = Math.round((e.loaded / e.total) * 100);
+    if (isNaN(Percent)) Percent = 0;
+
+    // Update Text & Width Progress Bar
+    document.getElementById("msgs").innerHTML = "Menginstal Cache Offline...";
+    document.getElementById("progressBar").style.width = Percent + "%";
+    document.getElementById("progressText").innerHTML = Percent + "%";
+}
+
+function DisplayCacheProgress() {
+    document.getElementById("msgs").innerHTML = "Cache Berhasil Diinstal";
+    document.getElementById("progressBar").style.width = "100%";
+    document.getElementById("progressBar").style.background = "linear-gradient(90deg, #149187, #01ff61)";
+    document.getElementById("progressText").innerHTML = "100%";
+
+    // Memuat ulang halaman kembali ke menu utama
+    window.location.reload();
+}
+
+window.applicationCache.addEventListener("progress", DLProgress, false);
+window.applicationCache.oncached = function(e) { DisplayCacheProgress(); };
+window.applicationCache.onupdateready = function(e) { DisplayCacheProgress(); };
+window.applicationCache.onerror = function(e) { 
+    document.getElementById("msgs").innerHTML = "Kesalahan Saat Menginstal Cache! - Bersihkan dan Buka Kembali Browser Anda ..."; 
+    document.getElementById("progressBar").style.background = "linear-gradient(90deg, #cb2d3e, #ef473a)"; 
+    document.getElementById("progressText").innerHTML = "ERROR";
+};
+
+// Deteksi Firmware PS4 untuk Indikator Status
+var uaFull = navigator.userAgent;
+var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
+var isPS4 = match !== null;
+var fwVersion = isPS4 ? match[1] : "Unknown";
+var fwNum = parseFloat(fwVersion);
+
+document.addEventListener("DOMContentLoaded", function() {
+    var fwText = document.getElementById("fwText");
+    var statusDot = document.getElementById("statusDot");
+    var fwBadge = document.getElementById("fwBadge");
+
+    if (isPS4) {
+        fwText.innerHTML = fwVersion;
+        if (fwNum === 12.00 || (fwNum >= 11.00 && fwNum <= 13.52)) {
+            statusDot.className = "status-dot status-online";
+            fwBadge.style.backgroundColor = "#10e610";
+            fwBadge.innerText = "SUPPORTED";
+        } else {
+            statusDot.className = "status-dot status-offline";
+            fwBadge.style.backgroundColor = "#e51d08";
+            fwBadge.style.color = "#fff";
+            fwBadge.innerText = "UNSUPPORTED";
+        }
+    } else {
+        fwText.innerHTML = "Bukan PS4";
+        statusDot.className = "status-dot status-offline";
+        fwBadge.style.backgroundColor = "#e74c3c";
+        fwBadge.style.color = "#fff";
+        fwBadge.innerText = "PC / MOBILE";
+    }
+});
+</script>
+
+</body>
+</html>
