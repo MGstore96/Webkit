@@ -131,8 +131,6 @@ function startManualExploit() {
     clearAutoTimer();
     loadExploit();
 }
-
-// Toggle Checkbox Auto JB
 function toggleAutoJB() {
     var isChecked = document.getElementById("autoJB").checked;
     localStorage.setItem("autoJailbreak", isChecked ? "true" : "false");
@@ -195,7 +193,7 @@ document.addEventListener("DOMContentLoaded", function() {
     updateFWStatus();
 
     if (!isPS4) {
-        setMsg("Hanya Untuk PS4 Firmware 7.00 sampai 13.52", "error");
+        setMsg("Hanya Untuk PS4 Slopkit", "error");
         return;
     }
     if (window.applicationCache && window.applicationCache.status == '0') {
