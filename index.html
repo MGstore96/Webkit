@@ -63,28 +63,31 @@ function onScriptError() {
 // Fungsi Eksekusi Payload
 function loadExploit() {
     var msgs = document.getElementById("msgs");
+    
+    // PEMILIHAN LAPSE 12.00 ONLY
     if (fwNum >= 11.50 && fwNum <= 12.02) {
-        var script = document.createElement('script');
-        script.type = 'module';
-        script.src = "chain_lapse.js";
-        script.onerror = onScriptError;
-        document.head.appendChild(script);
-    } else if (fwNum >= 12.50 && fwNum <= 13.00) {
-        var script = document.createElement('script');
-        script.type = 'module';
-        script.src = "chain_poops.js";
-        script.onerror = onScriptError;
-        document.head.appendChild(script);
-    } else if (fwNum >= 13.02 && fwNum <= 13.52) {
-        var script = document.createElement('script');
-        script.type = 'module';
-        script.src = "jb.js?v=19";
-        script.onerror = onScriptError;
-        document.head.appendChild(script);
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "chain_lapse.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 12.50 && fwNum <= 13.00) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "chain_poops.js";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
+        }
+        else if (fwNum >= 13.02 && fwNum <= 13.52) {
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = "jb.js?v=19";
+            script.onerror = onScriptError;
+            document.head.appendChild(script);
     } else {
-        setMsg('Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>');
- }
-
+        msgs.innerHTML = 'Firmware tidak didukung untuk exploit otomatis: <span style="color: red;">' + fwVersion + '</span>';
+    }
 }
 
 // Penghentian Timer Hitung Mundur
@@ -141,15 +144,9 @@ function updateFWStatus() {
     var statusDot = document.getElementById("statusDot");
     var fwBadge = document.getElementById("fwBadge");
 
-
     if (isPS4) {
         fwText.innerHTML = fwVersion;
-        var isSupported = (fwNum == 5.05 || fwNum == 5.07 || 
-                           (fwNum >= 7.00 && fwNum <= 8.52) || 
-                           (fwNum >= 9.00 && fwNum <= 9.60) || 
-                           (fwNum >= 10.00 && fwNum <= 11.02) || 
-                           (fwNum >= 11.50 && fwNum <= 13.52));
-        if (isSupported) {
+        if (fwNum >= 11.50 && fwNum <= 13.52) {
             statusDot.className = "status-dot status-online";
             fwBadge.style.backgroundColor = "#10e610";
             fwBadge.innerText = "SUPPORTED";
