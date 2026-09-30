@@ -65,36 +65,7 @@ function setMsg(htmlContent) {
     var msgsElem = document.getElementById("msgs");
     if (msgsElem) {
         msgsElem.innerHTML = htmlContent;
-    }
 }
-
-// Fungsi Eksekusi Payload berdasarkan Firmware
-function loadExploit() {
-    setMsg("Menjalankan Exploit... Mohon Tunggu");
-
-    // Penanganan Cache Browser
-    if (window.applicationCache && window.applicationCache.status == '0') {
-        if (fwNum == 5.05 || fwNum == 5.07) {
-            window.location.replace("cache505.html");
-            return;
-        } else if (fwNum >= 7.00 && fwNum <= 8.52) {
-            window.location.replace("cache700.html");
-            return;
-        } else if (fwNum >= 9.00 && fwNum <= 9.60) {
-            window.location.replace("cache900.html");
-            return;
-        } else if (fwNum >= 10.00 && fwNum <= 11.02) {
-            window.location.replace("cachecss.html");
-            return;
-        } else if (fwNum >= 11.50 && fwNum <= 13.52) {
-            window.location.replace("cacheslopkit.html");
-            return;
-        } else {
-            setMsg('Unsupported Firmware: <span style="color: red;">' + fwVersion + '</span>');
-            return;
-        }
-    }
-
     // Pemuatan Script Exploit
     if (fwNum == 5.05 || fwNum == 5.07) {
         var script = document.createElement('script');
