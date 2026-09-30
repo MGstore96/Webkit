@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>7.00 - 13.52 Webkit by MGstore</title>
+<title>Slopkit Relapse by MGstore</title>
 <link rel="stylesheet" href="modifikasi.css">
 </head>
 <body>
 
 <div class="container">
     <hr style="width: 100%;">
-    <h2>Webkit by MGstore</h2>
+    <h2>Slopkit Relapse by MGstore</h2>
     <div class="fw-status-card">
         <span class="status-dot" id="statusDot"></span>
         <span>Firmware: <b id="fwText">Detecting...</b></span>
@@ -95,7 +95,7 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 11.50 && fwNum <= 12.02) {
-        msgs.innerHTML = "Menjalankan Lapse Kernel...";
+        msgs.innerHTML ='<span class="msg-lapse">Menjalankan Lapse Kernel...</span>';
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "chain_lapse.js";
@@ -103,7 +103,7 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 12.50 && fwNum <= 13.00) {
-        msgs.innerHTML = "Menjalankan PoopsPloit...";
+        msgs.innerHTML ='<span class="msg-poops">Menjalankan PoopsPloit...</span>';
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "chain_poops.js";
@@ -111,7 +111,7 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 13.02 && fwNum <= 13.52) {
-        msgs.innerHTML = "Menjalankan Exploit Relapse...";
+        msgs.innerHTML ='<span class="msg-relapse">Menjalankan Exploit Relapse...</span>';
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "jb.js?v=19";
