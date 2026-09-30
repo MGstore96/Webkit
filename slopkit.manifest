@@ -1,15 +1,16 @@
-CACHE MANIFEST
+CACHE MANIFEST 
 
 CACHE:
-index.html
-modifikasi.css
 logo.png
+modifikasi.css
+goldhen_2.4b18.12.bin
+index.html
 chain_lapse.js
 chain_poops.js
-jb.js?v=19
 core.js?v=10
 core.js
 int64.js
+jb.js?v=19
 mem.js
 ps4_offsets.js
 rpc_worker.js
