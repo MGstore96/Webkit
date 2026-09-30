@@ -60,9 +60,12 @@ function onScriptError() {
     document.getElementById("msgs").innerHTML = "Konten Tidak Ditemukan! - Hapus Data Browser dan Muat Ulang Cache ...";
 }
 
+// Fungsi Eksekusi Payload
 function loadExploit() {
     var msgs = document.getElementById("msgs");
-    if (fwNum === 12.00) {
+    
+    // Pemilihan Firmware Exploit (11.50 - 13.52)
+    if (fwNum >= 11.50 && fwNum <= 12.00) {
         msgs.innerHTML = "Menjalankan Exploit...";
         var script = document.createElement('script');
         script.type = 'module';
@@ -76,14 +79,13 @@ function loadExploit() {
         script.src = "chain_poops.js";
         script.onerror = onScriptError;
         document.head.appendChild(script);
-   } else if (fwNum >= 13.02 && fwNum <= 13.52) {
-    msgs.innerHTML = "Menjalankan Exploit Relapse...";
-    var script = document.createElement('script');
-    script.type = 'module';
-    script.src = "jb.js"; // Diubah dari "jb.js?v=19"
-    script.onerror = onScriptError;
-    document.head.appendChild(script);
-      
+    } else if (fwNum >= 13.02 && fwNum <= 13.52) {
+        msgs.innerHTML = "Menjalankan Exploit Relapse...";
+        var script = document.createElement('script');
+        script.type = 'module';
+        script.src = "jb.js?v=19";
+        script.onerror = onScriptError;
+        document.head.appendChild(script);
     } else {
         msgs.innerHTML = 'Firmware tidak didukung untuk exploit otomatis: <span style="color: red;">' + fwVersion + '</span>';
     }
@@ -145,8 +147,7 @@ function updateFWStatus() {
 
     if (isPS4) {
         fwText.innerHTML = fwVersion;
-        // Rentang disesuaikan ke 11.50 - 13.52
-        if (fwNum >= 11.50 && fwNum <= 13.52){
+        if (fwNum >= 11.50 && fwNum <= 13.52) {
             statusDot.className = "status-dot status-online";
             fwBadge.style.backgroundColor = "#10e610";
             fwBadge.innerText = "SUPPORTED";
@@ -172,12 +173,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     updateFWStatus();
 
+    // Cek Perangkat PS4
     if (!isPS4) {
         msgs.innerHTML = "Hanya Untuk PS4 Slopkit";
         return;
     }
 
-    // Penanganan Cache Browser (Disesuaikan ke 11.50 - 13.52)
+    // Penanganan Cache Browser
     if (window.applicationCache && window.applicationCache.status == '0') {
         if (fwNum >= 11.50 && fwNum <= 13.52) {
             window.location.replace("cacheslopkit.html");
@@ -187,7 +189,7 @@ document.addEventListener("DOMContentLoaded", function() {
             return;
         }
     }
-    
+
     // Load Preferensi Checkbox dari localStorage
     var savedAutoJB = localStorage.getItem("autoJailbreak");
     if (savedAutoJB === "true") {
