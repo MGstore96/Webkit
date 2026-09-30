@@ -1,15 +1,17 @@
-CACHE MANIFEST 
+CACHE MANIFEST
+# Version 1.0 - FW 11.50-13.52
 
 CACHE:
-logo.png
-goldhen_2.4b18.10.bin
 index.html
+cacheslopkit.html
+modifikasi.css
+logo.png
 chain_lapse.js
 chain_poops.js
+jb.js
 core.js?v=10
 core.js
 int64.js
-jb.js?v=19
 mem.js
 ps4_offsets.js
 rpc_worker.js
