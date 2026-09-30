@@ -1,0 +1,251 @@
+html {
+    background-image: url('img.jpg');
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-color: #3d3f4e;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+ body {
+        background-color: #0d0f12;
+        color: #ffffff;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background: linear-gradient(to right, rgba(0,0,0,0), #00d2ff, rgba(0,0,0,0));
+        margin: 20px 0;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Indikator Status Firmware */
+    .fw-status-card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(0, 210, 255, 0.3);
+        border-radius: 12px;
+        padding: 10px 20px;
+        margin-top: 10px;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 0 10px rgba(0, 210, 255, 0.1);
+    }
+
+    .fw-badge {
+        background-color: #00d2ff;
+        color: #0d0f12;
+        padding: 4px 10px;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .status-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        display: inline-block;
+        background-color: #888;
+    }
+
+    .status-online { background-color: #10e610; box-shadow: 0 0 8px #10e610; }
+    .status-offline { background-color: #e74c3c; box-shadow: 0 0 8px #e74c3c; }
+
+    /* Logo Custom di Tengah */
+    .logo-container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .custom-logo {
+        max-width: 150px;
+        height: auto;
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+        transition: transform 0.3s ease;
+    }
+
+    .custom-logo:hover {
+        transform: scale(1.05);
+    }
+
+    /* Pesan Status */
+    #msgs {
+        font-size: 22px;
+        margin: 15px 0;
+        color: #00d2ff;
+        min-height: 36px;
+        text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+    }
+
+    /* Tombol GoldHEN */
+    .btn-goldhen {
+        background: linear-gradient(135deg, #f39c12, #d35400);
+        color: white;
+        border: none;
+        padding: 15px 40px;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 30px;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+        transition: all 0.3s ease;
+        margin: 15px 0;
+    }
+
+    .btn-goldhen:hover {
+        background: linear-gradient(135deg, #e67e22, #a04000);
+        box-shadow: 0 6px 20px rgba(243, 156, 18, 0.6);
+        transform: translateY(-2px);
+    }
+
+    .btn-goldhen:active {
+        transform: translateY(1px);
+    }
+
+    /* Opsi Auto Jailbreak */
+    .auto-jb-wrapper {
+        margin: 15px 0;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .auto-jb-wrapper input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+    }
+
+    /* Credits Footer */
+    .credits {
+        font-size: 13px;
+        color: #aaa;
+        line-height: 1.6;
+        margin-top: 20px;
+    }
+
+    .credits a {
+        color: #00d2ff;
+        text-decoration: none;
+        margin: 0 5px;
+    }
+
+
+h1 {
+    text-shadow: 0.0em 0.0em 0.0em black;
+    font-size: 25px;
+    color: white;
+}
+
+h2 {
+    text-shadow: 0.1em 0.0em 0.5em black;
+    font-size: 40px;
+    color: whitesmoke;
+
+}
+
+h3 {
+    text-shadow: 0.1em 0.1em 0.2em black;
+    font-size:30px;
+    color: hwb(0 4% 0%);
+  
+}
+
+a {
+    text-decoration: none;
+}
+
+#progress {
+    display: block;
+}
+
+#menu {
+    display: block;
+}
+
+#crypto {
+    display: none;
+}
+
+#tools {
+    display: none;
+}
+
+#lnx {
+    display: none;
+}
+
+#mods {
+    display: none;
+}
+
+.btn {
+    background-color: white;
+    color: black;
+    width: 227px;
+    height: 46px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 20px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-style: none;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #0069d9;
+}
+
+.btn-onln {
+    background-color: #076300;
+}
+
+.btn-onln:hover {
+    background-color: #18891b;
+}
+
+.btn-toolbox {
+    background-color: #ae2301;
+}
+
+.btn-toolbox:hover {
+    background-color: #d42a01;
+}
+
+.btn-ps5 {
+    background-color: #3d3f4e;
+}
+
+.btn-ps5:hover {
+    background-color: #c2c2c2;
+    color: #303030;
+}
