@@ -67,12 +67,14 @@ function loadExploit() {
     msgs.innerHTML = "Menjalankan Exploit...";
     
     if (fwNum == 5.05 || fwNum == 5.07) {
+        msgs.innerHTML = "Menjalankan Exploit...";
         var script = document.createElement('script');
         script.src = "505/exploit.js";
         script.onerror = onScriptError;
         document.head.appendChild(script);
     }
     else if (fwNum >= 7.00 && fwNum <= 8.52) {
+        msgs.innerHTML = "Menjalankan Exploit PSFree...";
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "700/alert.js";
@@ -80,6 +82,7 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 9.00 && fwNum <= 9.60) {
+        msgs.innerHTML = "Menjalankan Exploit PSFree...";
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "900/alert.js";
@@ -87,6 +90,7 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 10.00 && fwNum <= 11.02) {
+        msgs.innerHTML = "Menjalankan CSSfrontface...";
         var script = document.createElement('script');
         script.src = "css/main.js";
         script.onerror = onScriptError;
@@ -98,6 +102,7 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 11.50 && fwNum <= 12.02) {
+        msgs.innerHTML = "Menjalankan Lapse Kernel...";
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "chain_lapse.js";
@@ -105,6 +110,7 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 12.50 && fwNum <= 13.00) {
+        msgs.innerHTML = "Menjalankan PoopsPloit...";
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "chain_poops.js";
@@ -112,6 +118,7 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 13.02 && fwNum <= 13.52) {
+        msgs.innerHTML = "Menjalankan Exploit Relapse...";
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "jb.js?v=19";
