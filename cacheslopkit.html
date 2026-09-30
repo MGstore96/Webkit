@@ -47,60 +47,39 @@
 </div>
 
 <script>
-history.replaceState(null,null,'index.html');
-var histlength=history.length;
+istory.replaceState(null, null, 'index.html');
+var histlength = history.length;
 history.go(-histlength);
 
-function setMsg(htmlContent, type) {
-    var msgsElem = document.getElementById("msgs");
-    if(!msgsElem) return;
-    
-    msgsElem.className = ""; 
-    if (type === "success") {
-        msgsElem.classList.add("success");
-    } else if (type === "error") {
-        msgsElem.classList.add("error");
-    }
-    msgsElem.innerHTML = htmlContent;
+function DLProgress(e) {
+    var Percent = Math.round((e.loaded / e.total) * 100);
+    if (isNaN(Percent)) Percent = 0;
+
+    // Update Text & Width Progress Bar
+    document.getElementById("msgs").innerHTML = "Menginstal Cache Offline...";
+    document.getElementById("progressBar").style.width = Percent + "%";
+    document.getElementById("progressText").innerHTML = Percent + "%";
 }
 
-function DLProgress(e){
-    Percent = Math.round(e.loaded / e.total * 100);
-    setMsg("Menginstal Cache Offline: " + Percent + "%", "running");
-    
-    var bar = document.getElementById("pbar");
-    if (bar) {
-        bar.style.width = Percent + "%";
-        
-        // Logika perubahan warna berdasarkan persentase
-        if (Percent < 30) {
-            bar.style.background = 'linear-gradient(90deg, #ff6b6b, #d90404)'; // Merah
-        } else if (Percent < 70) {
-            bar.style.background = 'linear-gradient(90deg, #fceb00, #c4b000)'; // Kuning
-        } else {
-            bar.style.background = 'linear-gradient(90deg, #e8fb01, #08e238)'; // Hijau (Warna asli)
-        }
-    }
-}
+function DisplayCacheProgress() {
+    document.getElementById("msgs").innerHTML = "Cache Berhasil Diinstal";
+    document.getElementById("progressBar").style.width = "100%";
+    document.getElementById("progressBar").style.background = "linear-gradient(90deg, #149187, #01ff61)";
+    document.getElementById("progressText").innerHTML = "100%";
 
-function DisplayCacheProgress(){
-    setMsg("Cache Berhasil Diinstal", "success");
-    var bar = document.getElementById("pbar");
-    if (bar) {
-        bar.style.width = "100%";
-        bar.style.background = 'linear-gradient(90deg, #e8fb01, #08e238)'; // Pastikan berwarna hijau saat 100%
-    }
-    setTimeout(function(){
-        window.location.href = "index.html";
-    }, 1500);
+    // Memuat ulang halaman kembali ke menu utama
+    window.location.reload();
 }
 
 window.applicationCache.addEventListener("progress", DLProgress, false);
-window.applicationCache.oncached = function(e){ DisplayCacheProgress(); };
-window.applicationCache.onupdateready = function(e){ DisplayCacheProgress(); };
-window.applicationCache.onerror = function(e){
-    setMsg("Kesalahan Saat Menginstal Cache! - Bersihkan dan Buka Kembali Browser Anda ...", "error");
+window.applicationCache.oncached = function(e) { DisplayCacheProgress(); };
+window.applicationCache.onupdateready = function(e) { DisplayCacheProgress(); };
+window.applicationCache.onerror = function(e) { 
+    document.getElementById("msgs").innerHTML = "Kesalahan Saat Menginstal Cache! - Bersihkan dan Buka Kembali Browser Anda ..."; 
+    document.getElementById("progressBar").style.background = "linear-gradient(90deg, #cb2d3e, #ef473a)"; 
+    document.getElementById("progressText").innerHTML = "ERROR";
 };
+
 // Deteksi Firmware PS4 untuk Indikator Status
 var uaFull = navigator.userAgent;
 var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
