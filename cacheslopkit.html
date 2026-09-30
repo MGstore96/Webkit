@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Slopkit Webkit by MGstore</title>
+<title>7.00 - 13.52 Webkit by MGstore</title>
 <link rel="stylesheet" href="modifikasi.css">
 </head>
 <body>
 
 <div class="container">
     <hr style="width: 100%;">
-    <h2>Slopkit Webkit by MGstore</h2>
+    <h2>Webkit by MGstore</h2>
     
     <!-- Status Indikator Firmware -->
     <div class="fw-status-card">
@@ -23,7 +23,7 @@
 
     <!-- LOGO CUSTOM -->
     <div class="logo-container">
-        <img src="logo.png" alt="Logo" class="custom-logo" id="mainLogo" onerror="this.style.display='none'">
+        <img src="logo.png" alt="Logo MGstore" class="custom-logo" id="mainLogo" onerror="this.style.display='none'">
     </div>
 
     <!-- Pesan Status & Output Instalasi Cache -->
@@ -39,10 +39,15 @@
     <div class="credits">
         <strong>Special Thanks to:</strong><br>
         <a href="#">GamerHack93</a> <a href="#">sleirsgoevy</a> <a href="#">TheFlow</a> <a href="#">Flatz</a> 
-        <a href="#">Egycnq</a> <a href="#">Jordy</a> <a href="#">Sonic-Iso</a> <a href="#">Feyzee61</a> 
-        <a href="#">AlAzif</a> <a href="#">ChendoChap</a> <a href="#">Kameleonre_</a> <a href="#">SiSTR0</a>
+        <a href="#">Egycnq</a> <a href="#">Jordy</a> <a href="#">Sonic-Iso</a> <a href="#">Abc</a> 
+        <a href="#">Prb29327239</a> <a href="#">Feyzee61</a> <a href="#">AlAzif</a> <a href="#">ChendoChap</a> 
+        <a href="#">Kameleonre_</a> <a href="#">SiSTR0</a>
     </div>
     <hr style="width: 100%;">
+
+    <footer style="text-align: center; margin-top: 15px; font-size: 14px;">
+        <p>&copy; MGstore Webkit Host</p>
+    </footer>
 </div>
 
 <script>
@@ -71,14 +76,16 @@ function DisplayCacheProgress() {
     window.location.reload();
 }
 
-window.applicationCache.addEventListener("progress", DLProgress, false);
-window.applicationCache.oncached = function(e) { DisplayCacheProgress(); };
-window.applicationCache.onupdateready = function(e) { DisplayCacheProgress(); };
-window.applicationCache.onerror = function(e) { 
-    document.getElementById("msgs").innerHTML = "Kesalahan Saat Menginstal Cache! - Bersihkan dan Buka Kembali Browser Anda ..."; 
-    document.getElementById("progressBar").style.background = "linear-gradient(90deg, #cb2d3e, #ef473a)"; 
-    document.getElementById("progressText").innerHTML = "ERROR";
-};
+if (window.applicationCache) {
+    window.applicationCache.addEventListener("progress", DLProgress, false);
+    window.applicationCache.oncached = function(e) { DisplayCacheProgress(); };
+    window.applicationCache.onupdateready = function(e) { DisplayCacheProgress(); };
+    window.applicationCache.onerror = function(e) { 
+        document.getElementById("msgs").innerHTML = "Kesalahan Saat Menginstal Cache! - Bersihkan dan Buka Kembali Browser Anda ..."; 
+        document.getElementById("progressBar").style.background = "linear-gradient(90deg, #cb2d3e, #ef473a)"; 
+        document.getElementById("progressText").innerHTML = "ERROR";
+    };
+}
 
 // Deteksi Firmware PS4 untuk Indikator Status
 var uaFull = navigator.userAgent;
@@ -94,7 +101,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (isPS4) {
         fwText.innerHTML = fwVersion;
-        if (fwNum >= 11.50 && fwNum <= 13.52) {
+        // Penyelarasan dukungan firmware dengan index.html (5.05, 5.07, dan 7.00 s/d 13.52)
+        var isSupported = (fwNum == 5.05 || fwNum == 5.07 || (fwNum >= 7.00 && fwNum <= 13.52));
+        
+        if (isSupported) {
             statusDot.className = "status-dot status-online";
             fwBadge.style.backgroundColor = "#10e610";
             fwBadge.innerText = "SUPPORTED";
