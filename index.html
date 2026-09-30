@@ -61,6 +61,13 @@ function onScriptError() {
     document.getElementById("msgs").innerHTML = "Konten Tidak Ditemukan! - Hapus Data Browser dan Muat Ulang Cache ...";
 }
 
+function setMsg(htmlContent) {
+    var msgsElem = document.getElementById("msgs");
+    if (msgsElem) {
+        msgsElem.innerHTML = htmlContent;
+    }
+}
+
 // Fungsi Eksekusi Payload berdasarkan Firmware
 function loadExploit() {
     setMsg("Menjalankan Exploit... Mohon Tunggu");
@@ -216,7 +223,6 @@ function updateFWStatus() {
     }
 }
 
-// Inisialisasi Saat Dimuat
 document.addEventListener("DOMContentLoaded", function() {
     var msgs = document.getElementById("msgs");
     var autoJBCheckbox = document.getElementById("autoJB");
