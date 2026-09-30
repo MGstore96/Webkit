@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="id">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>7.00 - 13.52 Webkit by MGstore</title>
 <link rel="stylesheet" href="modifikasi.css">
+</head>
 <body>
 
 <div class="container">
     <hr style="width: 100%;">
     <h2>Webkit by MGstore</h2>
-    
     <div class="fw-status-card">
         <span class="status-dot" id="statusDot"></span>
         <span>Firmware: <b id="fwText">Detecting...</b></span>
@@ -17,17 +18,14 @@
     </div>
 
     <hr style="width: 100%;">
-
     <div class="logo-container">
         <img src="logo.png" alt="Logo MGstore" class="custom-logo" id="mainLogo" onerror="this.style.display='none'">
     </div>
-
     <button class="btn-goldhen" id="btnGoldhen" onclick="startManualExploit()">GoldHEN</button>
     <label class="auto-jb-wrapper">
         <input type="checkbox" id="autoJB" onchange="toggleAutoJB()">
         <span>Auto Jailbreak</span>
     </label>
-
     <h2 id="msgs">Sedang Memuat GoldHEN... Mohon Tunggu</h2>
     <div class="credits">
         <strong>Special Thanks to:</strong><br>
@@ -50,7 +48,7 @@ function setMsg(htmlContent, type) {
     var msgsElem = document.getElementById("msgs");
     if(!msgsElem) return;
     
-    msgsElem.className = ""; // Reset class
+    msgsElem.className = "";
     if (type === "success") {
         msgsElem.classList.add("success");
     } else if (type === "error") {
@@ -64,17 +62,14 @@ function onScriptError() {
 }
 function loadExploit() {
     var msgs = document.getElementById("msgs");
-    msgs.innerHTML = "Menjalankan Exploit...";
     
     if (fwNum == 5.05 || fwNum == 5.07) {
-        msgs.innerHTML = "Menjalankan Exploit...";
         var script = document.createElement('script');
         script.src = "505/exploit.js";
         script.onerror = onScriptError;
         document.head.appendChild(script);
     }
     else if (fwNum >= 7.00 && fwNum <= 8.52) {
-        msgs.innerHTML = "Menjalankan Exploit PSFree...";
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "700/alert.js";
@@ -82,7 +77,6 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 9.00 && fwNum <= 9.60) {
-        msgs.innerHTML = "Menjalankan Exploit PSFree...";
         var script = document.createElement('script');
         script.type = 'module';
         script.src = "900/alert.js";
@@ -90,7 +84,6 @@ function loadExploit() {
         document.head.appendChild(script);
     }
     else if (fwNum >= 10.00 && fwNum <= 11.02) {
-        msgs.innerHTML = "Menjalankan CSSfrontface...";
         var script = document.createElement('script');
         script.src = "css/main.js";
         script.onerror = onScriptError;
@@ -138,6 +131,8 @@ function startManualExploit() {
     clearAutoTimer();
     loadExploit();
 }
+
+// Toggle Checkbox Auto JB
 function toggleAutoJB() {
     var isChecked = document.getElementById("autoJB").checked;
     localStorage.setItem("autoJailbreak", isChecked ? "true" : "false");
@@ -196,6 +191,13 @@ function updateFWStatus() {
 document.addEventListener("DOMContentLoaded", function() {
     var msgs = document.getElementById("msgs");
     var autoJBCheckbox = document.getElementById("autoJB");
+
+    updateFWStatus();
+
+    if (!isPS4) {
+        setMsg("Hanya Untuk PS4 Firmware 7.00 sampai 13.52", "error");
+        return;
+    }
     if (window.applicationCache && window.applicationCache.status == '0') {
         if (fwNum == 5.05 || fwNum == 5.07) {
             window.location.replace("cache505.html");
