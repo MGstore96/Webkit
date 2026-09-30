@@ -11,8 +11,6 @@
 <div class="container">
     <hr style="width: 100%;">
     <h2>Webkit by MGstore</h2>
-    
-    <!-- Status Indikator Firmware -->
     <div class="fw-status-card">
         <span class="status-dot" id="statusDot"></span>
         <span>Firmware: <b id="fwText">Detecting...</b></span>
@@ -20,22 +18,14 @@
     </div>
 
     <hr style="width: 100%;">
-
-    <!-- LOGO CUSTOM -->
     <div class="logo-container">
         <img src="logo.png" alt="Logo MGstore" class="custom-logo" id="mainLogo" onerror="this.style.display='none'">
     </div>
-
-    <!-- Pesan Status & Output Instalasi Cache -->
     <h2 id="msgs">Memulai Instalasi Cache...</h2>
-
-    <!-- UI Progress Bar -->
     <div class="progress-container">
         <div class="progress-bar" id="progressBar"></div>
         <div class="progress-text" id="progressText">0%</div>
     </div>
-
-    <!-- Credits -->
     <div class="credits">
         <strong>Special Thanks to:</strong><br>
         <a href="#">GamerHack93</a> <a href="#">sleirsgoevy</a> <a href="#">TheFlow</a> <a href="#">Flatz</a> 
@@ -44,14 +34,9 @@
         <a href="#">Kameleonre_</a> <a href="#">SiSTR0</a>
     </div>
     <hr style="width: 100%;">
-
-    <footer style="text-align: center; margin-top: 15px; font-size: 14px;">
-        <p>&copy; MGstore Webkit Host</p>
-    </footer>
 </div>
 
 <script>
-// Logic Asli Cache Handling
 history.replaceState(null, null, 'index.html');
 var histlength = history.length;
 history.go(-histlength);
@@ -59,8 +44,6 @@ history.go(-histlength);
 function DLProgress(e) {
     var Percent = Math.round((e.loaded / e.total) * 100);
     if (isNaN(Percent)) Percent = 0;
-
-    // Update Text & Width Progress Bar
     document.getElementById("msgs").innerHTML = "Menginstal Cache Offline...";
     document.getElementById("progressBar").style.width = Percent + "%";
     document.getElementById("progressText").innerHTML = Percent + "%";
@@ -71,8 +54,6 @@ function DisplayCacheProgress() {
     document.getElementById("progressBar").style.width = "100%";
     document.getElementById("progressBar").style.background = "linear-gradient(90deg, #149187, #01ff61)";
     document.getElementById("progressText").innerHTML = "100%";
-
-    // Memuat ulang halaman kembali ke menu utama
     window.location.reload();
 }
 
@@ -86,8 +67,6 @@ if (window.applicationCache) {
         document.getElementById("progressText").innerHTML = "ERROR";
     };
 }
-
-// Deteksi Firmware PS4 untuk Indikator Status
 var uaFull = navigator.userAgent;
 var match = uaFull.match(/PlayStation 4[ /]([\d.]+)/i);
 var isPS4 = match !== null;
@@ -101,9 +80,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     if (isPS4) {
         fwText.innerHTML = fwVersion;
-        // Penyelarasan dukungan firmware dengan index.html (5.05, 5.07, dan 7.00 s/d 13.52)
         var isSupported = (fwNum == 5.05 || fwNum == 5.07 || (fwNum >= 7.00 && fwNum <= 13.52));
-        
         if (isSupported) {
             statusDot.className = "status-dot status-online";
             fwBadge.style.backgroundColor = "#10e610";
@@ -117,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
     } else {
         fwText.innerHTML = "Bukan PS4";
         statusDot.className = "status-dot status-offline";
-        fwBadge.style.backgroundColor = "#e74c3c";
+        fwBadge.style.backgroundColor = "#cc1010";
         fwBadge.style.color = "#fff";
         fwBadge.innerText = "PC / MOBILE";
     }
